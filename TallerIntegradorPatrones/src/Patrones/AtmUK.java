@@ -5,6 +5,7 @@
  */
 package Patrones;
 
+import ChainOfResponsibility.Manejador;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Locale;
