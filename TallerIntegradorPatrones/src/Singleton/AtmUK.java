@@ -20,7 +20,7 @@ public class AtmUK {
     /*Implementacion del patron sigleton*/
     private static AtmUK instance = new AtmUK();// se hace una instancia privada de ATM
     // -----------------
-    private AtmUK() {
+    private AtmUK() { 
       manejadores = new ArrayList<Manejador>();
     }
     /*Se crea un metodo con el objetvo de acceder a solo una instancia de ATM*/
@@ -28,7 +28,7 @@ public class AtmUK {
     public static AtmUK getInstance(){
         return  instance;
     }
-
+ 
 
     // -----------------
     public double getTotal() {
