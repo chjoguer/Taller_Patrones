@@ -5,6 +5,7 @@
  */
 package Patrones;
 
+import java.util.Currency;
 import java.util.Locale;
 
 /**
@@ -13,27 +14,29 @@ import java.util.Locale;
  */
 public class CuentaAdapter implements Cuenta {
     protected Account cuenta;
-    protected Locale moneda;
+    protected Currency moneda;
     
     public CuentaAdapter(int id,double monto){
         cuenta=new Account(id,monto);
+        this.moneda=Currency.getInstance(Locale.US);
     }
 
     @Override
     public double balance() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return cuenta.getAmount();
     }
 
     @Override
-    public boolean retira(int monto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean retira(double monto) {
+        cuenta.withdraw(monto);
+        return true;
     }
 
     @Override
-    public boolean depositar(int n, int denominacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean depositar(double n, double denominacion) {
+        double totalDeposito=n*denominacion;
+        cuenta.deposit(totalDeposito);
+        return true;
     }
-    
-    
     
 }
