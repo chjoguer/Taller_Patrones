@@ -5,12 +5,9 @@
  */
 package Singleton;
 
-<<<<<<< HEAD:TallerIntegradorPatrones/src/Singleton/AtmUK.java
+
 import Patrones.Account;
-import Patrones.Manejador;
-=======
 import ChainOfResponsibility.Manejador;
->>>>>>> 105e51a5bb72807b5a6bbf0f02645193ee149fc4:TallerIntegradorPatrones/src/Patrones/AtmUK.java
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Locale;
@@ -20,6 +17,7 @@ public class AtmUK {
     protected final Locale currency=Locale.UK;
     protected double dinero = 0;
     protected ArrayList <Manejador> manejadores; // Cada manejador puede entregar dinero de una sola denominación
+    protected Manejador manejador;
     /*Implementacion del patron sigleton*/
     private AtmUK instance = new AtmUK();// se hace una instancia privada de ATM
     // -----------------
@@ -40,22 +38,15 @@ public class AtmUK {
     
 
     // -----------------
-    public boolean sacarDinero(double dinero) {
-        if(dinero ==0)
-            return false;
-        this.dinero -= dinero;
-        return true;
+    public boolean sacarDinero(int dinero) {
+        return manejador.retirar(dinero);
         // Todo: realizar el proceso de sacar de cada manejador la cantidad requerida
     }
 
     // -----------------
-    public boolean ingresarDinero(double dinero, int denominacion) {
-        if(denominacion==0||dinero==0)
-            return false;
-        this.dinero += dinero;
-        return true;
-     
-        // Todo: Sólo se puede depositar billetes de una sola denominación y agregarse al manejador correspondiente
+    public boolean ingresarDinero(int dinero, int denominacion) {
+        return manejador.depositar(dinero, denominacion);
+             // Todo: Sólo se puede depositar billetes de una sola denominación y agregarse al manejador correspondiente
     }
 
     public void addManejador(Manejador m){

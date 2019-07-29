@@ -9,19 +9,28 @@ package ChainOfResponsibility;
  *
  * @author Administrador
  */
-public class ManejadorDinero implements Manejador{
+public class ManejadorDinero implements Manejador {
+
     private Manejador next;
     protected int cantidad;
     protected double denominacion;
+    public int dinero;
 
     @Override
     public boolean retirar(int monto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (dinero == 0) {
+            return false;
+        }
+        this.dinero -= dinero;
+        return true;
     }
 
     @Override
     public boolean depositar(int monto, int denominacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(denominacion==0||dinero==0)
+            return false;
+        this.dinero += dinero;
+        return true;
     }
 
     @Override
