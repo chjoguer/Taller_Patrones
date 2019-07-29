@@ -5,8 +5,12 @@
  */
 package Singleton;
 
+<<<<<<< HEAD:TallerIntegradorPatrones/src/Singleton/AtmUK.java
 import Patrones.Account;
 import Patrones.Manejador;
+=======
+import ChainOfResponsibility.Manejador;
+>>>>>>> 105e51a5bb72807b5a6bbf0f02645193ee149fc4:TallerIntegradorPatrones/src/Patrones/AtmUK.java
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Locale;
