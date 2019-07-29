@@ -18,14 +18,14 @@ public class AtmUK {
     protected ArrayList <Manejador> manejadores; // Cada manejador puede entregar dinero de una sola denominación
     protected Manejador manejador;
     /*Implementacion del patron sigleton*/
-    private AtmUK instance = new AtmUK();// se hace una instancia privada de ATM
+    private static AtmUK instance = new AtmUK();// se hace una instancia privada de ATM
     // -----------------
     private AtmUK() { 
       manejadores = new ArrayList<Manejador>();
     }
     /*Se crea un metodo con el objetvo de acceder a solo una instancia de ATM*/
     //------------------
-    public AtmUK getInstance(){
+    public static AtmUK getInstance(){
         return  instance;
     }
 

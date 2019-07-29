@@ -12,8 +12,8 @@ package Patrones;
 public interface Cuenta {
     public double balance();
     
-    public boolean retira(int monto);
+    public boolean retira(double monto);
     
-    public boolean depositar(int n,int denominacion);
+    public boolean depositar(double n,double denominacion);
     
 }
