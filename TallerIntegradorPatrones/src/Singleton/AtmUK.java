@@ -43,7 +43,7 @@ public class AtmUK {
         // Todo: realizar el proceso de sacar de cada manejador la cantidad requerida
     }
 
-    // -----------------
+    // ----------------- 
     public boolean ingresarDinero(int dinero, int denominacion) {
         return manejador.depositar(dinero, denominacion);
              // Todo: Sólo se puede depositar billetes de una sola denominación y agregarse al manejador correspondiente
