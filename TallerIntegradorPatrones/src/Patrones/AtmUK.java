@@ -14,25 +14,41 @@ public class AtmUK {
     protected final Locale currency=Locale.UK;
     protected double dinero = 0;
     protected ArrayList <Manejador> manejadores; // Cada manejador puede entregar dinero de una sola denominación
-
+    /*Implementacion del patron sigleton*/
+    private AtmUK instance = new AtmUK();// se hace una instancia privada de ATM
     // -----------------
-    public AtmUK() {
+    private AtmUK() {
       manejadores = new ArrayList<Manejador>();
     }
+    /*Se crea un metodo con el objetvo de acceder a solo una instancia de ATM*/
+    //------------------
+    public AtmUK getInstance(){
+        return  instance;
+    }
+
+
     // -----------------
     public double getTotal() {
         return this.dinero;
     }
+    
 
     // -----------------
-    public void sacarDinero(double dinero) {
+    public boolean sacarDinero(double dinero) {
+        if(dinero ==0)
+            return false;
         this.dinero -= dinero;
+        return true;
         // Todo: realizar el proceso de sacar de cada manejador la cantidad requerida
     }
 
     // -----------------
-    public void ingresarDinero(double dinero, int denominacion) {
+    public boolean ingresarDinero(double dinero, int denominacion) {
+        if(denominacion==0||dinero==0)
+            return false;
         this.dinero += dinero;
+        return true;
+     
         // Todo: Sólo se puede depositar billetes de una sola denominación y agregarse al manejador correspondiente
     }
 
