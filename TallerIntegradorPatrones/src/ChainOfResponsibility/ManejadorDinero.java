@@ -15,12 +15,12 @@ public class ManejadorDinero implements Manejador{
     protected double denominacion;
 
     @Override
-    public boolean retirar(int monto) {
+    public boolean retirar(double monto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean depositar(int monto, int denominacion) {
+    public boolean depositar(double monto, int denominacion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
