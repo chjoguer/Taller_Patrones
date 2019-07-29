@@ -7,8 +7,8 @@ package ChainOfResponsibility;
 
 public interface Manejador
 {
-    public boolean retirar(int monto);
-    public boolean depositar(int monto, int denominacion);
+    public boolean retirar(double monto);
+    public boolean depositar(double monto, int denominacion);
     public void setNext(Manejador m);
     
 }

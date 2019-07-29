@@ -16,7 +16,8 @@ public class ManejadorDinero implements Manejador {
     protected double denominacion;
     public int dinero;
 
-    @Override
+   
+
     public boolean retirar(int monto) {
         if (dinero == 0) {
             return false;
@@ -25,16 +26,27 @@ public class ManejadorDinero implements Manejador {
         return true;
     }
 
-    @Override
     public boolean depositar(int monto, int denominacion) {
         if(denominacion==0||dinero==0)
             return false;
         this.dinero += dinero;
         return true;
+
+    }
+
+    @Override
+    public boolean retirar(double monto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean depositar(double monto, int denominacion) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setNext(Manejador m) {
-        this.next = m;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
+
