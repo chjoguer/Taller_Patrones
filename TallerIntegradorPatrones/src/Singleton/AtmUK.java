@@ -28,7 +28,7 @@ public class AtmUK {
     public static AtmUK getInstance(){
         return  instance;
     }
-
+ 
 
     // -----------------
     public double getTotal() {
