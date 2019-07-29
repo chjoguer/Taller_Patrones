@@ -29,7 +29,7 @@ public class AtmUK {
         return  instance;
     }
  
-
+ 
     // -----------------
     public double getTotal() {
         return this.dinero;
