@@ -36,10 +36,10 @@ public class ManejadorDinero implements Manejador {
 */
     @Override
     public boolean retirar(double monto) {
-        if (dinero == 0 || monto <= 0) {
+        if (dinero == 0 || monto <= 0) 
             return false;
-        }
         
+        return true;
     }
 
     @Override
