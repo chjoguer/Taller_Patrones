@@ -1,4 +1,4 @@
-package Patrones;
+package Adapter;
 
 import java.util.Currency;
 import java.util.Locale;
