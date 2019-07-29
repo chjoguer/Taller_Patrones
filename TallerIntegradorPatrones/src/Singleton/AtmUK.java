@@ -6,7 +6,7 @@
 package Singleton;
 
 
-import Patrones.Account;
+import Adapter.Account;
 import ChainOfResponsibility.Manejador;
 import java.util.ArrayList;
 import java.util.Locale;

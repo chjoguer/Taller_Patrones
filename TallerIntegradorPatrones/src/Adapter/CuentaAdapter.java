@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Patrones;
+package Adapter;
 
+import Adapter.Cuenta;
+import Adapter.Account;
 import java.util.Currency;
 import java.util.Locale;
 
