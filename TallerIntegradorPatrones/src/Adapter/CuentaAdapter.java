@@ -30,12 +30,14 @@ public class CuentaAdapter implements Cuenta {
 
     @Override
     public boolean retira(double monto) {
+        if(monto<=0) return false;
         cuenta.withdraw(monto);
         return true;
     }
 
     @Override
     public boolean depositar(double n, double denominacion) {
+        if(n<=0 || denominacion<=0) return false;
         double totalDeposito=n*denominacion;
         cuenta.deposit(totalDeposito);
         return true;
