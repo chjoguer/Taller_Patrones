@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Patrones;
+package Singleton;
 
+import Patrones.Account;
+import Patrones.Manejador;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Locale;
