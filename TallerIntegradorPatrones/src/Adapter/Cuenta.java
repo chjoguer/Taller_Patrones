@@ -10,10 +10,11 @@ package Adapter;
  * @author Dario Triviño
  */
 public interface Cuenta {
+
     public double balance();
-    
+
     public boolean retira(double monto);
-    
-    public boolean depositar(double n,double denominacion);
-    
+
+    public boolean depositar(double n, double denominacion);
+
 }

@@ -5,10 +5,12 @@
  */
 package ChainOfResponsibility;
 
-public interface Manejador
-{
+public interface Manejador {
+
     public boolean retirar(double monto);
-    public boolean depositar(double monto, int denominacion);
+
+    public boolean depositar(double monto, double denominacion);
+
     public void setNext(Manejador m);
-    
+
 }
