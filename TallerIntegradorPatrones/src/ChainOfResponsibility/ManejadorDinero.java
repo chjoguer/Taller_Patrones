@@ -14,7 +14,7 @@ public class ManejadorDinero implements Manejador {
     private Manejador next;
     protected int cantidad;
     protected double denominacion;
-    public double dinero;
+    public double dinero; 
 
     /*
     public boolean retirar(int monto) {
