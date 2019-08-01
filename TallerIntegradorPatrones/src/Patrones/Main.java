@@ -33,11 +33,11 @@ public class Main {
         Manejador m4 = new ManejadorDinero(10, 0.25);
         Manejador m5 = new ManejadorDinero(1000, 0.05);
         
-        /*cajeroSingle.addManejador(m1);
+        cajeroSingle.addManejador(m1);
         cajeroSingle.addManejador(m2);
         cajeroSingle.addManejador(m3);
         cajeroSingle.addManejador(m4);
-        cajeroSingle.addManejador(m5);*/
+        cajeroSingle.addManejador(m5);
         
         
         m1.setNext(m2);
@@ -58,7 +58,7 @@ public class Main {
             
         }
 
-       /* CuentaAdapter c2 = new CuentaAdapter(2, 150.75);
+       CuentaAdapter c2 = new CuentaAdapter(2, 150.75);
         CuentaAdapter c3 = new CuentaAdapter(3, 115.10);
         CuentaAdapter c4 = new CuentaAdapter(4, 900.80);
         CuentaAdapter c5 = new CuentaAdapter(5, 775.25);
@@ -66,8 +66,8 @@ public class Main {
         CuentaAdapter c7 = new CuentaAdapter(7, 650.05);
         CuentaAdapter c8 = new CuentaAdapter(11, 888.40);
         CuentaAdapter c9 = new CuentaAdapter(12, 700.00);
-        CuentaAdapter c10 = new CuentaAdapter(110, 699.70);*/
-        /*cuentas.add(c1);
+        CuentaAdapter c10 = new CuentaAdapter(110, 699.70);
+       // cuentas.add(c1);
         cuentas.add(c2);
         cuentas.add(c3);
         cuentas.add(c4);
@@ -76,7 +76,7 @@ public class Main {
         cuentas.add(c7);
         cuentas.add(c8);
         cuentas.add(c9);
-        cuentas.add(c10);*/
+        cuentas.add(c10);
         // Menú principal para seleccionar una de las 10 cuentas solo con el i
         Scanner sc = new Scanner(System.in);
         int opt =0;
@@ -87,14 +87,17 @@ public class Main {
                 case 1:
                     System.out.println("Ingrese el id de la cuenta que desea elegir");
                     int id = sc.nextInt();
+                   
                     for (CuentaAdapter cuenta : cuentas) {
                         if(cuenta.getId()==id){
                             cajeroSingle.transaction(cuenta);
                         }
-                        
                     }
-                    
-                    
+                case 2:
+                    System.out.println("Transacciones Disponibles");
+                    //cajeroSingle.transaction(cuenta);
+                case 3:    
+                    System.out.close();
                 break;
                     
             

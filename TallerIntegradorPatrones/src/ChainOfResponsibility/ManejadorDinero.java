@@ -23,7 +23,6 @@ public class ManejadorDinero implements Manejador {
         this.next = null;
 
     }
-
     /*
     public boolean retirar(int monto) {
         if (dinero == 0) {
@@ -38,7 +37,6 @@ public class ManejadorDinero implements Manejador {
             return false;
         this.dinero += dinero;
         return true;
-
     }
      */
     //Se asume que se colocan los manejadores de mayor denominacion a menor denominacion
@@ -92,8 +90,7 @@ public class ManejadorDinero implements Manejador {
 
     @Override
     public void setNext(Manejador m) {
- 
-        this.next = m; 
+         this.next = m; 
  }
 
     public int getCantidad() {

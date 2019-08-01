@@ -5,8 +5,6 @@
  */
 package Adapter;
 
-import Adapter.Cuenta;
-import Adapter.Account;
 import java.util.Currency;
 import java.util.Locale;
 
@@ -18,12 +16,29 @@ public class CuentaAdapter implements Cuenta {
 
     protected Account cuenta;
     protected Currency moneda;
-        
+
     public CuentaAdapter(int id, double monto) {
         cuenta = new Account(id, monto);
         this.moneda = Currency.getInstance(Locale.US);
     }
 
+    public Account getCuenta() {
+        return cuenta;
+    }
+
+    public int getId() {
+        return cuenta.getId();
+
+    }
+
+    public double getAmount() {
+        return cuenta.getAmount();
+    }
+
+    
+    
+    
+    
     @Override
     public double balance() {
         return cuenta.getAmount();
@@ -38,14 +53,6 @@ public class CuentaAdapter implements Cuenta {
         return true;
     }
 
-    public Account getCuenta() {
-        return cuenta;
-    }
-    public int getId(){
-        return cuenta.getId();
-        
-    }
-
     @Override
     public boolean depositar(double n, double denominacion) {
         if (n <= 0 || denominacion <= 0) {
@@ -54,11 +61,6 @@ public class CuentaAdapter implements Cuenta {
         double totalDeposito = n * denominacion;
         cuenta.deposit(totalDeposito);
         return true;
-    }
-
-    
-    public double getAmount() {
-        return cuenta.getAmount();
     }
 
 }
