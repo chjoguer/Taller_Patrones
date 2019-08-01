@@ -15,7 +15,11 @@ public class ManejadorDinero implements Manejador {
     protected int cantidad;
     protected double denominacion;
     public double dinero; 
-
+    /*Constructor para luego instanciarlos en un arreglo de manejadores*/
+    public ManejadorDinero(int cantidad,double dominacion){
+        this.cantidad=cantidad;
+        this.denominacion=denominacion;
+    }
     /*
     public boolean retirar(int monto) {
         if (dinero == 0) {

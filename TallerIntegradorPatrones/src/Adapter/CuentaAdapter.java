@@ -38,6 +38,10 @@ public class CuentaAdapter implements Cuenta {
         return true;
     }
 
+    public Account getCuenta() {
+        return cuenta;
+    }
+
     @Override
     public boolean depositar(double n, double denominacion) {
         if (n <= 0 || denominacion <= 0) {

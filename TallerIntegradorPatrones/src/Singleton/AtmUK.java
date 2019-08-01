@@ -36,6 +36,10 @@ public class AtmUK {
         return this.dinero;
     }
 
+    public void setDinero(double dinero) {
+        this.dinero = dinero;
+    }
+
     // -----------------
     public boolean sacarDinero(int dinero) {
         return manejador.retirar(dinero);
@@ -43,9 +47,12 @@ public class AtmUK {
     }
 
     // ----------------- 
-    public boolean ingresarDinero(int dinero, int denominacion) {
+    public boolean ingresarDinero(int dinero, double denominacion) {
+       // for (int i = 0; i < manejadores.size(); i++) {
+         //   if(manejadores.get(i).)  
+        //}
         return manejador.depositar(dinero, denominacion);
-        // Todo: Sólo se puede depositar billetes de una sola denominación y agregarse al manejador correspondiente
+        //  Sólo se puede depositar billetes de una sola denominación y agregarse al manejador correspondiente
     }
 
     public void addManejador(Manejador m) {
