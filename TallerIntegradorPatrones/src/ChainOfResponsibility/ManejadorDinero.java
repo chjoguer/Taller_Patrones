@@ -17,9 +17,11 @@ public class ManejadorDinero implements Manejador {
     public double dinero;
 
     /*Constructor para luego instanciarlos en un arreglo de manejadores*/
-    public ManejadorDinero(int cantidad, double denominacion) {
-        this.cantidad = cantidad;
-        this.denominacion = denominacion;
+    public ManejadorDinero(int cantidad,double dominacion){
+        this.cantidad=cantidad;
+        this.denominacion=dominacion;
+        this.next = null;
+
     }
 
     /*
@@ -90,7 +92,19 @@ public class ManejadorDinero implements Manejador {
 
     @Override
     public void setNext(Manejador m) {
-        this.next = m;
-    }
+        this.next = m; 
+ }
 
+    public Manejador getNext() {
+        return next;
+    }
+    
+
+    @Override
+    public String toString() {
+        return "ManejadorDinero{" + "Cantidad: "+cantidad+"Denominacion: "+denominacion+"->next=" + getNext() + '}';
+    }
+    
+    
+    
 }

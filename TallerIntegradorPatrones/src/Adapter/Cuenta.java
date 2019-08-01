@@ -12,9 +12,9 @@ package Adapter;
 public interface Cuenta {
 
     public double balance();
-
     public boolean retirar(double monto);
-
     public boolean depositar(double n, double denominacion);
+    public double getAmount();
+
 
 }
