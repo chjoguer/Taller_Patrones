@@ -6,6 +6,7 @@
 package Singleton;
 
 import Adapter.Account;
+import Adapter.CuentaAdapter;
 import ChainOfResponsibility.Manejador;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -16,7 +17,7 @@ public class AtmUK {
     protected final Locale currency = Locale.UK;
     protected double dinero = 0;
     protected ArrayList<Manejador> manejadores; // Cada manejador puede entregar dinero de una sola denominación
-    protected Manejador manejador;
+    protected Manejador manejador = null;
     /*Implementacion del patron sigleton*/
     private static AtmUK instance = new AtmUK();// se hace una instancia privada de ATM
     // -----------------
@@ -56,7 +57,11 @@ public class AtmUK {
     }
 
     public void addManejador(Manejador m) {
-        manejadores.add(m);
+        if(manejador ==null)
+            manejador= m;
+        else
+            manejador.setNext(m);
+        //manejadores.add(m);
     }
 
     public Manejador removeManejador(int i) {
@@ -64,7 +69,7 @@ public class AtmUK {
     }
 
     //Dentro de las transacciones se debe llamar al ATM para hacer el retiro o deposito de la cuenta correspondiente
-    public static void transaction(Account cuenta) {
+    public static void transaction(CuentaAdapter cuenta) {
         // here is where most of the work is
         int choice;
         System.out.println("Please select an option");
@@ -84,9 +89,11 @@ public class AtmUK {
                     anotherTransaction(cuenta); // ask if they want another transaction
                 } else {
                     // Todo: verificar que se puede realizar el retiro del atm
-
+                     //double saldo = cuenta.getAmount();
+                     cuenta.retirar(amount);
+                     System.out.println("saldo"+cuenta.getAmount());
                     // Todo: actualizar tanto la cuenta como el atm y de los manejadores
-                    // cuenta.retirar(amount);
+                    
                     // AtmUK.sacarDinero(amount);
                     // Todo: Mostrar resumen de transacción o error
                     // "You have withdrawn "+amount+" and your new balance is "+balance;
@@ -120,7 +127,7 @@ public class AtmUK {
         }
     }
 
-    public static void anotherTransaction(Account cuenta) {
+    public static void anotherTransaction(CuentaAdapter cuenta) {
         System.out.println("Do you want another transaction?\n\nPress 1 for another transaction\n2 To exit");
         Scanner in = new Scanner(System.in);
         int anotherTransaction = in.nextInt();
