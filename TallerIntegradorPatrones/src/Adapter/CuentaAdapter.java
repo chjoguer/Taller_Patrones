@@ -30,7 +30,7 @@ public class CuentaAdapter implements Cuenta {
     }
 
     @Override
-    public boolean retira(double monto) {
+    public boolean retirar(double monto) {
         if (monto <= 0) {
             return false;
         }
