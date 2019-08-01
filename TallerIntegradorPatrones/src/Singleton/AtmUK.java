@@ -166,12 +166,8 @@ public class AtmUK {
                 break;
             case 4:
                 // Todo: mostrar el balance del ATM con los billetes en cada manejador
-                System.out.println("Balance del ATMEC: "+ this.getTotal());
-                ListIterator<Manejador> it = manejadores.listIterator();
-                while (it.hasNext()) {
-                    System.out.println("Manejadores"+it.next());
-                    
-                }
+                System.out.printf("Balance del ATMEC es: $ %.2f\n", this.getTotal());
+            
                 
                 
                 

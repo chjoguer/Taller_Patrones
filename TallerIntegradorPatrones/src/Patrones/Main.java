@@ -44,7 +44,7 @@ public class Main {
         m2.setNext(m3);
         m3.setNext(m4);
         m4.setNext(m5);
-             cajeroSingle.addManejador(m1);         
+        cajeroSingle.addManejador(m1);         
 
         System.out.println("Manejadores:" +cajeroSingle.toString());
         System.out.println("Total: "+cajeroSingle.getTotal());
