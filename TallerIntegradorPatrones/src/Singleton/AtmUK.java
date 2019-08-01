@@ -9,6 +9,8 @@ import Adapter.Account;
 import Adapter.CuentaAdapter;
 import ChainOfResponsibility.Manejador;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -16,8 +18,8 @@ public class AtmUK {
 
     protected final Locale currency = Locale.US;
     protected double dinero = 0;
-    protected ArrayList<Manejador> manejadores; // Cada manejador puede entregar dinero de una sola denominación
-    protected Manejador manejador =null ;
+    protected LinkedList<Manejador> manejadores; // Cada manejador puede entregar dinero de una sola denominación
+    protected Manejador manejador = null;
     /*Implementacion del patron sigleton*/
     private static AtmUK instance ;// se hace una instancia privada de ATM
     public Manejador getManejador() {
@@ -32,7 +34,7 @@ public class AtmUK {
     // -----------------
 
     private AtmUK() {
-        manejadores = new ArrayList<Manejador>();
+        manejadores = new LinkedList<>();
     }
 
     /*Se crea un metodo con el objetvo de acceder a solo una instancia de ATM*/
@@ -79,20 +81,33 @@ public class AtmUK {
 
     public void addManejador(Manejador m) {
         if(manejador ==null){
-            dinero += m.getDenominacion()*m.getCantidad();//Con esto calculo la cantidad de dinero que tiene el cajero
+            //dinero += m.getDenominacion()*m.getCantidad();//Con esto calculo la cantidad de dinero que tiene el cajero
             manejador= m;
+            ///m.setNext(null);
         }else{
-              /*Actualizo la cantidad de dinero del ATM por cada manejador que vaya agregando*/
-            dinero += m.getDenominacion()*m.getCantidad();//Con esto calculo la cantidad de dinero que tiene el cajero
-            manejador.setNext(m);
-            //manejador=m;
-            
+            for(Manejador n = manejador ;n!=null;n=m.getNext()){
+                                    //dinero += m.getDenominacion()*m.getCantidad();//Con esto calculo la cantidad de dinero que tiene el cajero
+                if(manejador.getNext()==null){
+                    this.manejador.setNext(m);
+
+                }
+                
+                
+            }
         }
-        //manejadores.add(m);
+                    cargarDineroManejadores();
+;
     }
 
     public Manejador removeManejador(int i) {
         return manejadores.remove(i);
+    }
+    public void cargarDineroManejadores(){
+        for(Manejador n = manejador ;n!=null;n=n.getNext()){
+            dinero += n.getCantidad()*n.getDenominacion();
+            System.out.println("dasd"+dinero);
+        }
+
     }
 
     //Dentro de las transacciones se debe llamar al ATM para hacer el retiro o deposito de la cuenta correspondiente
@@ -120,11 +135,11 @@ public class AtmUK {
                      cuenta.retirar(amount);
                      this.dinero-=amount;
                      System.out.println("saldo"+cuenta.getAmount());
-                      
-                     for(Manejador n = manejador;n!=null;n=n.getNext() ){
-                         System.out.println("manejador"+n);
-                         
-                     }
+                  //   Manejador n;
+                      ListIterator<Manejador> it = manejadores.listIterator();
+                      while (it.hasNext()) {
+                          
+                    }
                   
                     // AtmUK.sacarDinero(amount);
                     // Todo: Mostrar resumen de transacción o error
@@ -152,6 +167,13 @@ public class AtmUK {
             case 4:
                 // Todo: mostrar el balance del ATM con los billetes en cada manejador
                 System.out.println("Balance del ATMEC: "+ this.getTotal());
+                ListIterator<Manejador> it = manejadores.listIterator();
+                while (it.hasNext()) {
+                    System.out.println("Manejadores"+it.next());
+                    
+                }
+                
+                
                 
                 anotherTransaction(cuenta);
                 break;

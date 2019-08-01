@@ -6,6 +6,7 @@
 package Patrones;
 
 import Adapter.CuentaAdapter;
+import ChainOfResponsibility.Manejador;
 import ChainOfResponsibility.ManejadorDinero;
 import Singleton.AtmUK;
 import java.util.ArrayList;
@@ -26,22 +27,26 @@ public class Main {
         AtmUK cajeroSingle = AtmUK.getInstance();
         //ajeroSingle.setDinero(10000);
         
-        ManejadorDinero m1 = new ManejadorDinero(100, 20);
-        ManejadorDinero m2 = new ManejadorDinero(100, 10);
-        ManejadorDinero m3 = new ManejadorDinero(10, 0.50);
-        ManejadorDinero m4 = new ManejadorDinero(10, 0.25);
-        ManejadorDinero m5 = new ManejadorDinero(1000, 0.05);
-        cajeroSingle.addManejador(m1);
+        Manejador m1 = new ManejadorDinero(100, 20);
+        Manejador m2 = new ManejadorDinero(100, 10);
+        Manejador m3 = new ManejadorDinero(10, 0.50);
+        Manejador m4 = new ManejadorDinero(10, 0.25);
+        Manejador m5 = new ManejadorDinero(1000, 0.05);
+        
+        /*cajeroSingle.addManejador(m1);
         cajeroSingle.addManejador(m2);
         cajeroSingle.addManejador(m3);
         cajeroSingle.addManejador(m4);
-        cajeroSingle.addManejador(m5);
+        cajeroSingle.addManejador(m5);*/
+        
+        
+        m1.setNext(m2);
+        m2.setNext(m3);
+        m3.setNext(m4);
+        m4.setNext(m5);
+             cajeroSingle.addManejador(m1);         
 
-        //m1.setNext(m2);
-        //m2.setNext(m3);
-        //m3.setNext(m4);
-        //m4.setNext(m5);
-        System.out.println("Manejadores:" +cajeroSingle);
+        System.out.println("Manejadores:" +cajeroSingle.toString());
         System.out.println("Total: "+cajeroSingle.getTotal());
         // Crear 10 cuentas nuevas en dólares locale.US con un saldo inicial entre 100.00 y 1000.00 USD cada una.
         /*Primer Parametro id de la cuenta, Segundo Parametro cantidad de dinero en su cuenta*/

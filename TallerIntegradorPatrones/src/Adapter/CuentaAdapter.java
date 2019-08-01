@@ -56,7 +56,7 @@ public class CuentaAdapter implements Cuenta {
         return true;
     }
 
-    @Override
+    
     public double getAmount() {
         return cuenta.getAmount();
     }

@@ -120,6 +120,7 @@ public class ManejadorDinero implements Manejador {
         this.dinero = dinero;
     }
 
+    @Override
     public Manejador getNext() {
         return next;
     }
