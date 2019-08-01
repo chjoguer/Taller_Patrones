@@ -92,8 +92,33 @@ public class ManejadorDinero implements Manejador {
 
     @Override
     public void setNext(Manejador m) {
+ 
         this.next = m; 
  }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public double getDenominacion() {
+        return denominacion;
+    }
+
+    public void setDenominacion(double denominacion) {
+        this.denominacion = denominacion;
+    }
+
+    public double getDinero() {
+        return dinero;
+    }
+
+    public void setDinero(double dinero) {
+        this.dinero = dinero;
+    }
 
     public Manejador getNext() {
         return next;

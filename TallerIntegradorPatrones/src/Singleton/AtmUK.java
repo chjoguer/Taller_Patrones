@@ -14,12 +14,21 @@ import java.util.Scanner;
 
 public class AtmUK {
 
-    protected final Locale currency = Locale.UK;
+    protected final Locale currency = Locale.US;
     protected double dinero = 0;
     protected ArrayList<Manejador> manejadores; // Cada manejador puede entregar dinero de una sola denominación
-    protected Manejador manejador = null;
+    protected Manejador manejador =null ;
     /*Implementacion del patron sigleton*/
-    private static AtmUK instance = new AtmUK();// se hace una instancia privada de ATM
+    private static AtmUK instance ;// se hace una instancia privada de ATM
+    public Manejador getManejador() {
+        return manejador;
+    }
+
+    public void setManejador(Manejador manejador) {
+              
+        this.manejador = manejador;
+    }
+    
     // -----------------
 
     private AtmUK() {
@@ -29,7 +38,16 @@ public class AtmUK {
     /*Se crea un metodo con el objetvo de acceder a solo una instancia de ATM*/
     //------------------
     public static AtmUK getInstance() {
+        if(instance ==null){
+            return new AtmUK();
+        }
         return instance;
+        
+    }
+
+    @Override
+    public String toString() {
+        return "AtmUK{" + "currency=" + currency + ", dinero=" + dinero + ", manejador=" + manejador + '}';
     }
 
     // -----------------
@@ -42,25 +60,34 @@ public class AtmUK {
     }
 
     // -----------------
-    public boolean sacarDinero(int dinero) {
-        return manejador.retirar(dinero);
+    public boolean sacarDinero(int dinero) 
+    {
+        if(manejador.retirar(dinero)){
+            this.dinero-=dinero;
+            return true;
+        }
+        return false;
         // Todo: realizar el proceso de sacar de cada manejador la cantidad requerida
     }
 
     // ----------------- 
     public boolean ingresarDinero(int dinero, double denominacion) {
-       // for (int i = 0; i < manejadores.size(); i++) {
-         //   if(manejadores.get(i).)  
-        //}
+         this.dinero += dinero*denominacion;
         return manejador.depositar(dinero, denominacion);
         //  Sólo se puede depositar billetes de una sola denominación y agregarse al manejador correspondiente
     }
 
     public void addManejador(Manejador m) {
-        if(manejador ==null)
+        if(manejador ==null){
+            dinero += m.getDenominacion()*m.getCantidad();//Con esto calculo la cantidad de dinero que tiene el cajero
             manejador= m;
-        else
+        }else{
+              /*Actualizo la cantidad de dinero del ATM por cada manejador que vaya agregando*/
+            dinero += m.getDenominacion()*m.getCantidad();//Con esto calculo la cantidad de dinero que tiene el cajero
             manejador.setNext(m);
+            //manejador=m;
+            
+        }
         //manejadores.add(m);
     }
 
@@ -69,7 +96,7 @@ public class AtmUK {
     }
 
     //Dentro de las transacciones se debe llamar al ATM para hacer el retiro o deposito de la cuenta correspondiente
-    public static void transaction(CuentaAdapter cuenta) {
+    public  void transaction(CuentaAdapter cuenta) {
         // here is where most of the work is
         int choice;
         System.out.println("Please select an option");
@@ -84,16 +111,21 @@ public class AtmUK {
                 float amount;
                 System.out.println("Please enter amount to withdraw: ");
                 amount = in.nextFloat();
+                // verificar que se puede realizar el retiro del atm
                 if (amount > cuenta.getAmount() || amount == 0) {
                     System.out.println("You have insufficient funds\n\n");
                     anotherTransaction(cuenta); // ask if they want another transaction
                 } else {
-                    // Todo: verificar que se puede realizar el retiro del atm
-                     //double saldo = cuenta.getAmount();
-                     cuenta.retirar(amount);
-                     System.out.println("saldo"+cuenta.getAmount());
                     // Todo: actualizar tanto la cuenta como el atm y de los manejadores
-                    
+                     cuenta.retirar(amount);
+                     this.dinero-=amount;
+                     System.out.println("saldo"+cuenta.getAmount());
+                      
+                     for(Manejador n = manejador;n!=null;n=n.getNext() ){
+                         System.out.println("manejador"+n);
+                         
+                     }
+                  
                     // AtmUK.sacarDinero(amount);
                     // Todo: Mostrar resumen de transacción o error
                     // "You have withdrawn "+amount+" and your new balance is "+balance;
@@ -114,10 +146,13 @@ public class AtmUK {
             case 3:
                 // Todo: mostrar el balance de la cuenta
                 // "Your balance is "+balance
+                System.out.println("El balance de tu cuenta es: "+cuenta.getAmount());
                 anotherTransaction(cuenta);
                 break;
             case 4:
                 // Todo: mostrar el balance del ATM con los billetes en cada manejador
+                System.out.println("Balance del ATMEC: "+ this.getTotal());
+                
                 anotherTransaction(cuenta);
                 break;
             default:
@@ -127,7 +162,7 @@ public class AtmUK {
         }
     }
 
-    public static void anotherTransaction(CuentaAdapter cuenta) {
+    public void anotherTransaction(CuentaAdapter cuenta) {
         System.out.println("Do you want another transaction?\n\nPress 1 for another transaction\n2 To exit");
         Scanner in = new Scanner(System.in);
         int anotherTransaction = in.nextInt();
