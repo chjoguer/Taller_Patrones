@@ -76,6 +76,7 @@ public class ManejadorDinero implements Manejador {
     @Override
     public boolean depositar(double monto, double denominacion) {
         if (monto <= 0 || denominacion <= 0) {
+            System.out.println("asad"+monto+"  "+denominacion);
             return false;
         } else if (denominacion == this.denominacion) {
             this.cantidad += monto / denominacion;

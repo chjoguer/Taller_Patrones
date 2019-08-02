@@ -61,7 +61,7 @@ public class AtmUK {
     }
 
     // -----------------
-    public boolean sacarDinero(int dinero) {
+    public boolean sacarDinero(double dinero) {
         if (manejador.retirar(dinero)) {
             this.dinero -= dinero;
             return true;
@@ -101,7 +101,6 @@ public class AtmUK {
     public void cargarDineroManejadores() {
         for (Manejador n = manejador; n != null; n = n.getNext()) {
             dinero += n.getCantidad() * n.getDenominacion();
-            System.out.println("dasd" + dinero);
         }
 
     }
@@ -109,38 +108,38 @@ public class AtmUK {
     //Dentro de las transacciones se debe llamar al ATM para hacer el retiro o deposito de la cuenta correspondiente
     public void transaction(CuentaAdapter cuenta) {
         // here is where most of the work is
-        int denominacion = 0;
+        double denominacion = 0;
+        Scanner in = new Scanner(System.in);
         int choice;
         System.out.println("Please select an option");
         System.out.println("1. Withdraw");
         System.out.println("2. Deposit");
         System.out.println("3. Balance");
         System.out.println("4. Balance ATM");
-        Scanner in = new Scanner(System.in);
         choice = in.nextInt();
+        in.nextLine();
         switch (choice) {
             case 1:
-                float amount;
+                float amount=0;
                 System.out.println("Please enter amount to withdraw: ");
                 amount = in.nextFloat();
+                in.nextLine();
                 // verificar que se puede realizar el retiro del atm
                 if (amount > cuenta.getAmount() || amount == 0) {
                     System.out.println("You have insufficient funds\n\n");
                     anotherTransaction(cuenta); // ask if they want another transaction
                 } else {
                     // Todo: actualizar tanto la cuenta como el atm y de los manejadores
-                    cuenta.retirar(amount);
-                    this.dinero -= amount;
-                    System.out.println("saldo" + cuenta.getAmount());
-                    //   Manejador n;
-                    ListIterator<Manejador> it = manejadores.listIterator();
-                    while (it.hasNext()) {
+                    if(amount<cuenta.balance()){
+                        cuenta.retirar(amount);
+                        sacarDinero(choice);
+                        this.dinero -= amount;
+                        System.out.printf("Tu retiro es de $%.2f el balance de tu cueta es $%.2f\n",amount,cuenta.balance());
+
+                    }else{
+                        System.out.println("No hay suficiente dinero en el ATM");
 
                     }
-
-                    // AtmUK.sacarDinero(amount);
-                    // Todo: Mostrar resumen de transacción o error
-                    // "You have withdrawn "+amount+" and your new balance is "+balance;
                     anotherTransaction(cuenta);
                 }
                 break;
@@ -149,19 +148,28 @@ public class AtmUK {
                 
             case 2:
                 // option number 2 is depositing 
-                float deposit;
+                int deposit;
                 System.out.println("Please enter amount you would wish to deposit: ");
-                deposit = in.nextFloat();
-                if (deposit == 0 || denominacion == 0) {
-                    System.out.println("Wrong denomination or empty deposit");
-                    anotherTransaction(cuenta);
-                } else {
-                    // Todo: actualizar tanto la cuenta como el atm
-                    cuenta.depositar(deposit, denominacion);
-                    this.dinero += deposit;
-                }  
-                // Todo: Mostrar resumen de transacción o error
-                System.out.println("You have withdrawn " +deposit);
+                deposit = in.nextInt();
+                System.out.println("xx "+deposit);
+                in.nextLine();
+                double n;
+                System.out.print("Enter the denomination of your deposit: "); 
+                n = in.nextInt();
+                System.out.println("s "+n);
+                in.nextLine();
+                if(n==0||deposit==0){
+                    System.out.println("Dominacion o la cantidad de dinero esta vacia");
+                }else{
+                    // Mostrar resumen de transacción o error
+                    if(ingresarDinero(deposit, n)){
+                        cuenta.depositar(deposit, n);
+                        System.out.printf("Tu has depositado $%.2f y el balance de tu cuenta es $%.2f\n",(n*deposit),cuenta.balance());
+                        System.out.println("You have withdrawn " +deposit);
+                        System.out.println("Deposito Exitoso");
+                    }else
+                        System.out.println("No se pudo depositar");                    
+                }
                 anotherTransaction(cuenta);
                 break;
                 
