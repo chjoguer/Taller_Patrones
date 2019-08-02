@@ -49,13 +49,7 @@ public class Main {
         // Crear 10 cuentas nuevas en dólares locale.US con un saldo inicial entre 100.00 y 1000.00 USD cada una.
         /*Primer Parametro id de la cuenta, Segundo Parametro cantidad de dinero en su cuenta*/
         ArrayList<CuentaAdapter> cuentas = new ArrayList<>();
-
-        for (int i = 1; i < 11; i++) {
-            CuentaAdapter c1 = new CuentaAdapter(i, i * 100);
-            cuentas.add(c1);
-
-        }
-
+        CuentaAdapter c1 = new CuentaAdapter(1, 100);
         CuentaAdapter c2 = new CuentaAdapter(2, 150.75);
         CuentaAdapter c3 = new CuentaAdapter(3, 115.10);
         CuentaAdapter c4 = new CuentaAdapter(4, 900.80);
@@ -65,7 +59,8 @@ public class Main {
         CuentaAdapter c8 = new CuentaAdapter(11, 888.40);
         CuentaAdapter c9 = new CuentaAdapter(12, 700.00);
         CuentaAdapter c10 = new CuentaAdapter(110, 699.70);
-        // cuentas.add(c1);
+        
+        cuentas.add(c1);
         cuentas.add(c2);
         cuentas.add(c3);
         cuentas.add(c4);

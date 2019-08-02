@@ -134,7 +134,7 @@ public class AtmUK {
                 in.nextLine();
                 double n;
                 System.out.print("Enter the denomination of your deposit: ");
-                n = in.nextInt();
+                n = in.nextDouble();
                 in.nextLine();
                 if (n == 0 || deposit == 0) {
                     System.out.println("Denominación o la cantidad de dinero esta vacia");
@@ -142,7 +142,8 @@ public class AtmUK {
                     // Mostrar resumen de transacción o error
                     if (ingresarDinero(deposit, n)) {
                         cuenta.depositar(deposit, n);
-                        System.out.printf("Tu has depositado $%.2f y el balance de tu cuenta es $%.2f\n", (n * deposit), cuenta.balance());
+                        System.out.printf("Tu has depositado $%.2f \n", n*deposit );
+                        System.out.printf("El balance de tu cuenta es $%.2f\n", cuenta.balance());
                         System.out.println("Depósito Exitoso");
                     } else {
                         System.out.println("No se pudo depositar :(");
