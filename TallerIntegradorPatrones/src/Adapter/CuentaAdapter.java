@@ -31,14 +31,11 @@ public class CuentaAdapter implements Cuenta {
 
     }
 
+    @Override
     public double getAmount() {
         return cuenta.getAmount();
     }
-
-    
-    
-    
-    
+   
     @Override
     public double balance() {
         return cuenta.getAmount();

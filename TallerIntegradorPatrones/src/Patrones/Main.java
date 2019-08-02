@@ -15,10 +15,10 @@ import java.util.Scanner;
 public class Main {
 
     public static void menu() {
-        System.out.println("****MENU****");
+        System.out.println("******MENU******");
         System.out.println("Escoga una opcion");
         System.out.println("1.Realizar transacción");
-        System.out.println("3. Salir");
+        System.out.println("2.Salir");
     }
 
     public static void main(String[] args) {
@@ -34,7 +34,7 @@ public class Main {
         Manejador m5 = new ManejadorDinero(1000, 0.05);
 
         //cajeroSingle.addManejador(m1);
-        // cajeroSingle.addManejador(m2);
+        //cajeroSingle.addManejador(m2);
         //cajeroSingle.addManejador(m3);
         //cajeroSingle.addManejador(m4);
         //cajeroSingle.addManejador(m5);
@@ -44,7 +44,7 @@ public class Main {
         m4.setNext(m5);
         cajeroSingle.addManejador(m1);
 
-       // System.out.println("Manejadores:" + cajeroSingle.toString());
+        // System.out.println("Manejadores:" + cajeroSingle.toString());
         //System.out.println("Total: " + cajeroSingle.getTotal());
         // Crear 10 cuentas nuevas en dólares locale.US con un saldo inicial entre 100.00 y 1000.00 USD cada una.
         /*Primer Parametro id de la cuenta, Segundo Parametro cantidad de dinero en su cuenta*/
@@ -78,8 +78,8 @@ public class Main {
 
         // Menú principal para seleccionar una de las 10 cuentas solo con el i
         Scanner sc = new Scanner(System.in);
-        int opt = 0;
-        do{
+        int opt;
+        do {
             menu();
             opt = sc.nextInt();
             switch (opt) {
@@ -87,28 +87,25 @@ public class Main {
                 case 1:
                     System.out.println("Para realizar una transacción ingrese el id de la cuenta que desea elegir");
                     int id = sc.nextInt();
-                    CuentaAdapter c=null;
+                    CuentaAdapter c = null;
                     for (CuentaAdapter cuenta : cuentas) {
                         if (cuenta.getId() == id) {
                             c = cuenta;
-                            //cajeroSingle.transaction(cuenta);
                             break;
                         }
                     }
-                    if(c!=null)
-                       cajeroSingle.transaction(c);
-                    else
+                    if (c != null) {
+                        cajeroSingle.transaction(c);
+                    } else {
                         System.out.println("No existe cuenta con ese id");
-                    
+                    }
+
                     break;
                 case 2:
-                    System.out.close();
+                    System.out.println("Adiós :)");
+                    System.exit(0);
                     break;
             }
-        }while (opt!=3); 
-           // Object nextElement = en.nextElement();
-            
-        
-        // Mostrar el menú para realizar transacciones en el cajero automático
+        } while (opt != 3);
     }
 }
